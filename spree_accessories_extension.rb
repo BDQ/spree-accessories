@@ -14,29 +14,14 @@ class SpreeAccessoriesExtension < Spree::Extension
     end
     
     # register Accessories product tab
-    Admin::ProductsController.class_eval do
-      include Spree::Accessories
+    Admin::BaseController.class_eval do
       before_filter :add_accessories_tab
+      
+      private
+      def add_accessories_tab
+        @product_admin_tabs << {:name => 'Accessories', :url => "selected_admin_product_accessories_url"}
+      end
     end
-    # register Accessories product tab
-    Admin::VariantsController.class_eval do
-      include Spree::Accessories
-      before_filter :add_accessories_tab
-    end
-    # register Accessories product tab
-    Admin::OptionTypesController.class_eval do
-      include Spree::Accessories
-      before_filter :add_accessories_tab
-    end
-    # register Accessories product tab
-    Admin::ProductPropertiesController.class_eval do
-      include Spree::Accessories
-      before_filter :add_accessories_tab
-    end
-    # register Accessories product tab
-    Admin::TaxonsController.class_eval do
-      include Spree::Accessories
-      before_filter :add_accessories_tab
-    end
+ 
   end
 end

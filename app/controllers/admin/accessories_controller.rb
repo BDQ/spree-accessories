@@ -1,8 +1,6 @@
 class Admin::AccessoriesController < Admin::BaseController
   resource_controller
   before_filter :load_object, :only => [:selected, :available, :remove]
-  before_filter :initialize_product_extensions  
-  before_filter :add_accessories_tab
   
   belongs_to :product
 
@@ -40,9 +38,4 @@ class Admin::AccessoriesController < Admin::BaseController
     @accessories = @product.accessories
     render :layout => false
   end
-
-  private 
-    def add_accessories_tab
-      @product_extensions << {:name => 'Accessories', :url => "selected_admin_product_accessories_url"}
-    end
 end
