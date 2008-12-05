@@ -3,7 +3,7 @@ namespace :db do
   task :bootstrap  => :environment do
     # load initial database fixtures (in db/sample/*.yml) into the current environment's database
     ActiveRecord::Base.establish_connection(RAILS_ENV.to_sym)
-    Dir.glob(File.join(SpreeAccessoriesExtension.root, "db", 'sample', '*.{yml,csv}')).each do |fixture_file|
+    Dir.glob(File.join(AccessoriesExtension.root, "db", 'sample', '*.{yml,csv}')).each do |fixture_file|
       Fixtures.create_fixtures("#{SpreeAccessoriesExtension.root}/db/sample", File.basename(fixture_file, '.*'))
     end
 
@@ -12,12 +12,12 @@ end
 
 namespace :spree do
   namespace :extensions do
-    namespace :spree_accessories do
+    namespace :accessories do
       desc "Copies public assets of the Spree Accessories to the instance public/ directory."
       task :update => :environment do
         is_svn_or_dir = proc {|path| path =~ /\.svn/ || File.directory?(path) }
-        Dir[SpreeAccessoriesExtension.root + "/public/**/*"].reject(&is_svn_or_dir).each do |file|
-          path = file.sub(SpreeAccessoriesExtension.root, '')
+        Dir[AccessoriesExtension.root + "/public/**/*"].reject(&is_svn_or_dir).each do |file|
+          path = file.sub(AccessoriesExtension.root, '')
           directory = File.dirname(path)
           puts "Copying #{path}..."
           mkdir_p RAILS_ROOT + directory
