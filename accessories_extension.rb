@@ -19,7 +19,7 @@ class AccessoriesExtension < Spree::Extension
       
       private
       def add_accessories_tab
-        @product_admin_tabs << {:name => 'Accessories', :url => "selected_admin_product_accessories_url"}
+        @product_admin_tabs << {:name => t('accessories'), :url => "selected_admin_product_accessories_url"}
       end
     end
  

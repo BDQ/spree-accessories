@@ -1,8 +1,8 @@
 <table class="basic-table">
   <thead>
   	<tr>
-  		<th><%= t("Product") %></th>
-  		<th><%= t("Action") %></th>
+  		<th><%= t("product") %></th>
+  		<th><%= t("action") %></th>
   	</tr>
   </thead>
   <tbody>
@@ -10,7 +10,7 @@
       <tr id="<%= dom_id(accessory, :sel)%>">
         <td valign="top"><%= accessory.name %></td>
   	    <td valign="top">
-		      <%= link_to_remote t('Remove'), 
+		      <%= link_to_remote t('remove'), 
 		                         :url => remove_admin_product_accessory_url(@product, accessory),
 		                         :loading => "Element.show(#{dom_id(accessory, :rem_spinner)})",
 		                         :update => 'selected-accessories',
@@ -20,7 +20,7 @@
       </tr>
     <% end %>
     <% if accessories.empty? %>
-     <tr><td colspan="3">None.</td></tr>
+     <tr><td colspan="3"><%= t('none') %>.</td></tr>
     <% end %>
   </tbody>
 </table>

@@ -1,17 +1,17 @@
 <%= render :partial => 'shared/product_sub_menu' %>
-<h1><%= t("Accessories")%></h1>
+<h1><%= t("accessories")%></h1>
 <%= render :partial => 'shared/product_tabs', :locals => {:current => "Accessories"} %>
 <div id="selected-accessories">
   <%= render :partial => "accessories_table", :locals => {:accessories => @accessories} %>
 </div>
 <table>
   <tr>
-    <td><b><%= t('Search') %>:</b></td>
+    <td><b><%= t('search') %>:</b></td>
     <td><input id="searchtext" size="25"></td>
   </tr>
 </table>
 <div id="searching" style="display:none">
-  Searching &nbsp; <%= image_tag "spinner.gif" %>  
+  <%= t('searching') %> &nbsp; <%= image_tag "spinner.gif" %>  
 </div>
 <%= observe_field(:searchtext,
                   :frequency => 0.75,
