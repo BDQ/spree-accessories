@@ -1,6 +1,6 @@
-<%= render :partial => 'shared/product_sub_menu' %>
-<h1><%= t("accessories")%></h1>
-<%= render :partial => 'shared/product_tabs', :locals => {:current => "Accessories"} %>
+<%= render :partial => 'admin/shared/product_sub_menu' %>
+
+<%= render :partial => 'admin/shared/product_tabs', :locals => {:current => t("accessories") } %>
 <div id="selected-accessories">
   <%= render :partial => "accessories_table", :locals => {:accessories => @accessories} %>
 </div>
