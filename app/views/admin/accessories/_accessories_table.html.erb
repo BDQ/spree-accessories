@@ -2,20 +2,21 @@
   <thead>
   	<tr>
   		<th><%= t("product") %></th>
-  		<th><%= t("action") %></th>
+  		<th></th>
   	</tr>
   </thead>
   <tbody>
     <% accessories.each do |accessory| %>
       <tr id="<%= dom_id(accessory, :sel)%>">
-        <td valign="top"><%= accessory.name %></td>
-  	    <td valign="top">
-		      <%= link_to_remote t('remove'), 
-		                         :url => remove_admin_product_accessory_url(@product, accessory),
+        <td><%= accessory.name %></td>
+  	    <td class="actions">
+          <%= image_tag "spinner.gif", :style => "display:none", :id => "#{dom_id(accessory, :rem_spinner)}" %>		  
+		      <%= link_to_remote  icon('delete') + ' ' + t('remove'), 
+		                         {:url => remove_admin_product_accessory_url(@product, accessory),
 		                         :loading => "Element.show(#{dom_id(accessory, :rem_spinner)})",
 		                         :update => 'selected-accessories',
-		                         :complete => "$('#{dom_id(accessory, :sel)}').remove(); Element.hide(#{dom_id(accessory, :rem_spinner)});" %>
-          <%= image_tag "spinner.gif", :style => "display:none", :id => "#{dom_id(accessory, :rem_spinner)}" %>		                         
+		                         :complete => "$('#{dom_id(accessory, :sel)}').remove(); Element.hide(#{dom_id(accessory, :rem_spinner)});"}, :class => 'iconlink' %>
+                       
   	    </td>        
       </tr>
     <% end %>

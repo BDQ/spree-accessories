@@ -6,7 +6,7 @@
   }
 </script>
 <h4><%= t('available_accessories') %></h4>
-<table class="basic-table">
+<table class="index">
 	<thead>
 		<tr>
 			<th><%= t("name") %></th>
@@ -16,14 +16,14 @@
 	<tbody>
     <% @available_accessories.each do |accessory| %>
       <tr id="<%= dom_id(accessory) %>">
-        <td valign="top"><%= accessory.name %></td>
-		    <td valign="top">
-		      <%= link_to_remote t('select'), 
-		                         :url => select_admin_product_accessory_path(@product, accessory),
+        <td><%= accessory.name %></td>
+		    <td class="actions">
+          <%= image_tag "spinner.gif", :style => "display:none", :id => "#{dom_id(accessory, :spinner)}" %>		  		
+		      <%= link_to_remote icon('add') + ' ' + t('select'), 
+		                         {:url => select_admin_product_accessory_path(@product, accessory),
 		                         :loading => "Element.show(#{dom_id(accessory, :spinner)})",
 		                         :update => 'selected-accessories',
-		                         :complete => "$('#{dom_id(accessory)}').remove(); Element.hide(#{dom_id(accessory, :spinner)});" %>
-          <%= image_tag "spinner.gif", :style => "display:none", :id => "#{dom_id(accessory, :spinner)}" %>		    
+		                         :complete => "$('#{dom_id(accessory)}').remove(); Element.hide(#{dom_id(accessory, :spinner)});"}, :class => 'iconlink' %>  
 		    </td>        
       </tr>
     <% end %>
